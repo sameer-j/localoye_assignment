@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <head>
+        <title>LocalOye</title>
+        <style>
+            table,th,td
+            {
+            border:1px solid black;
+            border-collapse:collapse;
+            }
+            th,td
+            {
+            padding:5px;
+            }
+            td{width:200px;}
+            .Venue em
+            {
+            color: red;
+            font-weight: bold; 
+            }
+            body
+            {
+            background-image: url('{{ STATIC_URL }}localoye.png');
+            background-repeat:no-repeat;
+            background-size:50%;
+            background-position: right;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>Venues</h1>
+
+        {% if details %}
+            <ul>
+                {% for detail in details %}
+                <li style="margin: 1em 0">
+                <p class='Venue'><b>Venue: </b><em>{{ detail.venue.name }}</em></p>
+                <p><b>Location: </b>{{detail.venue.location}}</p>
+                <table style="width:600px">
+                    <tr>
+                      <th>Hall</th>
+                      <th>Capacity</th> 
+                      <th>Price Per Head</th>
+                    </tr>
+                    <tr>
+                      <td>{{detail.name}}</td>
+                      <td>{{detail.capacity}}</td> 
+                      <td>{{detail.price}}</td>
+                    </tr>
+                </table>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no Venues present.</strong>
+        {% endif %}
+
+    </body>
+</html>
